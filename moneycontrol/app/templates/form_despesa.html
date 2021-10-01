@@ -1,0 +1,39 @@
+{% extends 'base.html' %} {% block content %}
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="{% url 'home'%}">Home</a></li>
+                    {% if despesas %}
+                    <li class="breadcrumb-item active">Alterar / Excluir Despesa</li>
+                    {% else %}
+                    <li class="breadcrumb-item active">Registrar Despesa</li>
+                    {% endif %}
+                </ol>
+            </div>
+            {% if despesas %}
+            <h4 class="page-title">Alterar / Excluir Despesa</h4>
+            {% else %}
+            <h4 class="page-title">Registrar Nova Despesa</h4>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+{% load crispy_forms_tags %}
+<form method='POST'>
+    {% csrf_token %}
+    {{ form|crispy }}
+
+    {% if despesas %}
+    <button type="submit" class="btn btn-primary waves-effect waves-light mt-2">Alterar Despesa</button>
+    <a type="button" href="{% url 'excluir_despesas' despesas.id %}" class="btn btn-danger waves-effect waves-light mt-2">Excluir Despesa</a>
+    {% else %}
+    <button type="submit" class="btn btn-primary waves-effect waves-light mt-2">Registrar Despesa</button>
+    {% endif %}
+</form>
+
+{% endblock %}

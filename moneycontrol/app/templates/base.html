@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+{% load static %}
+
+<head>
+    <meta charset="utf-8"></meta>
+    <title>Money Control</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    <meta content="Uma aplicação para gerenciamento financeiro" name="description"></meta>
+    <meta content="Os Estagiários" name="author"></meta>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}"></link>
+
+    <!-- App css -->
+    <link href="{% static 'css/bootstrap-creative.min.css' %}" rel="stylesheet" type="text/css" id="bs-default-stylesheet"></link>
+
+    <link href="{% static 'css/app-creative.min.css' %}" rel="stylesheet" type="text/css" id="app-default-stylesheet"></link>
+
+    <!-- App css real -->
+    <link href="{% static 'css/app.css' %}" rel="stylesheet" type="text/css" id="bs-default-stylesheet"></link>
+
+    <!-- icons -->
+    <link href="{% static 'css/icons.min.css' %}" rel="stylesheet" type="text/css"></link>
+</head>
+
+<body data-layout-mode="horizontal" data-layout="{'mode':'light','width':'fluid','menuPosition':'fixed'}">
+    <div id="wrapper">
+        <!-- Topbar Start -->
+
+        <div class="navbar-custom cor-azul">
+            <div class="container-fluid">
+                <ul class="list-unstyled topnav-menu float-right mb-0">
+                    <li class="dropdown notification-list topbar-dropdown">
+                        <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            <img alt="user-image" class="rounded-circle" src="{% static 'images/users/user-1.jpg'%}" />
+
+                            <span class="pro-user-name ml-1"> Geneva <i class="mdi mdi-chevron-down"></i></span>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right profile-dropdown">
+
+                            <!-- item -->
+                            <div class="dropdown-header noti-title">
+                                <h6 class="text-overflow m-0">Welcome !</h6>
+                            </div>
+
+                            <!-- item -->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i class="fe-user"></i>
+                                <span>My Account</span>
+                            </a>
+
+                            <!-- item -->
+
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i class="fe-settings"></i>
+                                <span>Settings</span>
+                            </a>
+
+                            <!-- item -->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i class="fe-lock"></i>
+                                <span>Lock Screen</span>
+                            </a>
+
+                            <div class="dropdown-divider"></div>
+
+                            <!-- item -->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i class="fe-log-out"></i>
+                                <span>Logout</span>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+
+                <!-- LOGO -->
+
+                <div class="logo-box">
+                    <a href="{% url 'home' %}" class="logo logo-dark text-center">
+                        <span class="logo-sm">
+                            <img src="{% static 'images/logo-sm.png' %}" alt="" height="22">
+                            <span class="logo-lg-text-light">Money Control</span>
+                        </span>
+
+                        <span class="logo-lg">
+                            <img src="{% static 'images/logo-dark.png' %}" alt="" height="20">
+                            <span class="logo-lg-text-light">MC</span>
+                        </span>
+                    </a>
+
+                    <a href="{% url 'home' %}" class="logo logo-light
+                            text-center">
+                        <span class="logo-sm">
+                            <img src="{% static 'images/logo-sm.png' %}" alt="" height="22">
+                            <span class="logo-lg-text-light">MC</span>
+                        </span>
+
+                        <span class="logo-lg">
+                            <img style="margin-top:-10px;" src="{% static 'images/logo-mc.png' %}" alt="" height="50">
+                            <span class="logo-lg-text-light ml-2">Money Control</span>
+                        </span>
+                    </a>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+        <!-- end Topbar -->
+
+        <div class="topnav shadow-lg">
+            <div class="container-fluid">
+                <nav class="navbar navbar-light navbar-expand-lg
+                        topnav-menu">
+                    <div class="collapse navbar-collapse" id="topnav-menu-content">
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" href="{% url 'home' %}"> <i class="fe-home mr-1"></i> Home</a>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-apps" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fe-grid mr-1"></i> CRUD's <div class="arrow-down"></div>
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="topnav-apps">
+                                    <div class="dropdown">
+                                        <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-ecommerce" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fe-shopping-cart mr-1"></i> Despesas <div class="arrow-down"></div>
+                                        </a>
+
+                                        <div class="dropdown-menu" aria-labelledby="topnav-ecommerce">
+                                            <a href="{% url 'lista_despesas'%}" class="dropdown-item"> Despesas Registradas </a>
+                                            <a href="{% url 'criar_despesas'%}" class="dropdown-item"> Registrar Nova Despesa </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="dropdown">
+                                        <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-ecommerce" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fe-shopping-cart  mr-1"></i> Produtos <div class="arrow-down"></div>
+                                        </a>
+
+                                        <div class="dropdown-menu" aria-labelledby="topnav-ecommerce">
+                                            <a href="{% url 'lista_produtos' %}" class="dropdown-item"> Produtos Registrados </a>
+                                            <a href="{% url 'criar_produtos' %}" class="dropdown-item"> Registrar Novo Produto </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="dropdown">
+                                        <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-ecommerce" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fe-shopping-cart mr-1"></i> Prestadores de Serviço <div class="arrow-down"></div>
+                                        </a>
+
+                                        <div class="dropdown-menu" aria-labelledby="topnav-ecommerce">
+                                            <a href="{% url 'lista_prestadores' %}" class="dropdown-item">Prestadores de Serviço Registrados</a>
+                                            <a href="{% url 'criar_prestadores' %}" class="dropdown-item">Registrar Novo Prestador de Serviço</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="dropdown">
+                                        <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-ecommerce" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fe-shopping-cart mr-1"></i> Funcionários <div class="arrow-down"></div>
+                                        </a>
+
+                                        <div class="dropdown-menu" aria-labelledby="topnav-ecommerce">
+                                            <a href="{% url 'lista_funcionarios' %}" class="dropdown-item"> Funcionários Registrados </a>
+                                            <a href="{% url 'criar_funcionarios' %}" class="dropdown-item"> Registrar Novo Funcionário </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle
+                                        arrow-none" href="#" id="topnav-ui" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fe-briefcase mr-1"></i> UI Elements
+                                    <div class="arrow-down"></div>
+                                </a>
+
+                                <div class="dropdown-menu mega-dropdown-menu
+                                        dropdown-mega-menu-xl" aria-labelledby="topnav-ui">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div>
+                                                <a href="ui-buttons.html" class="dropdown-item">Buttons</a>
+                                                <a href="ui-cards.html" class="dropdown-item">Cards</a>
+                                                <a href="ui-avatars.html" class="dropdown-item">Avatars</a>
+                                                <a href="ui-portlets.html" class="dropdown-item">Portlets</a>
+                                                <a href="ui-tabs-accordions.html" class="dropdown-item">Tabs
+                                                    & Accordions</a>
+                                                <a href="ui-modals.html" class="dropdown-item">Modals</a>
+                                                <a href="ui-progress.html" class="dropdown-item">Progress</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div>
+                                                <a href="ui-notifications.html" class="dropdown-item">Notifications</a>
+                                                <a href="ui-spinners.html" class="dropdown-item">Spinners</a>
+                                                <a href="ui-images.html" class="dropdown-item">Images</a>
+                                                <a href="ui-carousel.html" class="dropdown-item">Carousel</a>
+                                                <a href="ui-list-group.html" class="dropdown-item">List
+                                                    Group</a>
+                                                <a href="ui-video.html" class="dropdown-item">Embed
+                                                    Video</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div>
+                                                <a href="ui-dropdowns.html" class="dropdown-item">Dropdowns</a>
+                                                <a href="ui-ribbons.html" class="dropdown-item">Ribbons</a>
+                                                <a href="ui-tooltips-popovers.html" class="dropdown-item">Tooltips
+                                                    & Popovers</a>
+                                                <a href="ui-general.html" class="dropdown-item">General
+                                                    UI</a>
+                                                <a href="ui-typography.html" class="dropdown-item">Typography</a>
+                                                <a href="ui-grid.html" class="dropdown-item">Grid</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle
+                                        arrow-none" href="#" id="topnav-components" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fe-layers mr-1"></i> Components
+                                    <div class="arrow-down"></div>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="topnav-components">
+                                    <div class="dropdown">
+                                        <a class="dropdown-item
+                                                dropdown-toggle arrow-none" href="#" id="topnav-extendedui" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fe-pocket mr-1"></i> Extended UI
+                                            <div class="arrow-down"></div>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="topnav-extendedui">
+                                            <a href="extended-nestable.html" class="dropdown-item">Nestable
+                                                List</a>
+                                            <a href="extended-range-slider.html" class="dropdown-item">Range
+                                                Slider</a>
+                                            <a href="extended-dragula.html" class="dropdown-item">Dragula</a>
+                                            <a href="extended-animation.html" class="dropdown-item">Animation</a>
+                                            <a href="extended-sweet-alert.html" class="dropdown-item">Sweet
+                                                Alert</a>
+                                            <a href="extended-tour.html" class="dropdown-item">Tour
+                                                Page</a>
+                                            <a href="extended-scrollspy.html" class="dropdown-item">Scrollspy</a>
+                                            <a href="extended-loading-buttons.html" class="dropdown-item">Loading
+                                                Buttons</a>
+                                        </div>
+                                    </div>
+                                    <a href="widgets.html" class="dropdown-item"><i class="fe-gift mr-1"></i>
+                                        Widgets</a>
+                                    <div class="dropdown">
+                                        <a class="dropdown-item
+                                                dropdown-toggle arrow-none" href="#" id="topnav-form" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fe-bookmark mr-1"></i> Forms
+                                            <div class="arrow-down"></div>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="topnav-form">
+                                            <a href="forms-elements.html" class="dropdown-item">General
+                                                Elements</a>
+                                            <a href="forms-advanced.html" class="dropdown-item">Advanced</a>
+                                            <a href="forms-validation.html" class="dropdown-item">Validation</a>
+                                            <a href="forms-pickers.html" class="dropdown-item">Pickers</a>
+                                            <a href="forms-wizard.html" class="dropdown-item">Wizard</a>
+                                            <a href="forms-masks.html" class="dropdown-item">Masks</a>
+                                            <a href="forms-summernote.html" class="dropdown-item">Summernote</a>
+                                            <a href="forms-quilljs.html" class="dropdown-item">Quilljs
+                                                Editor</a>
+                                            <a href="forms-file-uploads.html" class="dropdown-item">File
+                                                Uploads</a>
+                                            <a href="forms-x-editable.html" class="dropdown-item">X
+                                                Editable</a>
+                                            <a href="forms-image-crop.html" class="dropdown-item">Image
+                                                Crop</a>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown">
+                                        <a class="dropdown-item
+                                                dropdown-toggle arrow-none" href="#" id="topnav-charts" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fe-bar-chart-2 mr-1"></i> Charts
+                                            <div class="arrow-down"></div>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="topnav-charts">
+                                            <a href="charts-apex.html" class="dropdown-item">Apex
+                                                Charts</a>
+                                            <a href="charts-flot.html" class="dropdown-item">Flot
+                                                Charts</a>
+                                            <a href="charts-morris.html" class="dropdown-item">Morris
+                                                Charts</a>
+                                            <a href="charts-chartjs.html" class="dropdown-item">Chartjs
+                                                Charts</a>
+                                            <a href="charts-peity.html" class="dropdown-item">Peity
+                                                Charts</a>
+                                            <a href="charts-chartist.html" class="dropdown-item">Chartist
+                                                Charts</a>
+                                            <a href="charts-c3.html" class="dropdown-item">C3
+                                                Charts</a>
+                                            <a href="charts-sparklines.html" class="dropdown-item">Sparklines
+                                                Charts</a>
+                                            <a href="charts-knob.html" class="dropdown-item">Jquery
+                                                Knob Charts</a>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown">
+                                        <a class="dropdown-item
+                                                dropdown-toggle arrow-none" href="#" id="topnav-table" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fe-grid mr-1"></i> Tables
+                                            <div class="arrow-down"></div>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="topnav-table">
+                                            <a href="tables-basic.html" class="dropdown-item">Basic
+                                                Tables</a>
+                                            <a href="tables-datatables.html" class="dropdown-item">Data
+                                                Tables</a>
+                                            <a href="tables-editable.html" class="dropdown-item">Editable
+                                                Tables</a>
+                                            <a href="tables-responsive.html" class="dropdown-item">Responsive
+                                                Tables</a>
+                                            <a href="tables-footables.html" class="dropdown-item">FooTable</a>
+                                            <a href="tables-bootstrap.html" class="dropdown-item">Bootstrap
+                                                Tables</a>
+                                            <a href="tables-tablesaw.html" class="dropdown-item">Tablesaw
+                                                Tables</a>
+                                            <a href="tables-jsgrid.html" class="dropdown-item">JsGrid
+                                                Tables</a>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown">
+                                        <a class="dropdown-item
+                                                dropdown-toggle arrow-none" href="#" id="topnav-icons" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fe-cpu mr-1"></i> Icons
+                                            <div class="arrow-down"></div>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="topnav-icons">
+                                            <a href="icons-two-tone.html" class="dropdown-item">Two
+                                                Tone Icons</a>
+                                            <a href="icons-feather.html" class="dropdown-item">Feather
+                                                Icons</a>
+                                            <a href="icons-mdi.html" class="dropdown-item">Material
+                                                Design Icons</a>
+                                            <a href="icons-dripicons.html" class="dropdown-item">Dripicons</a>
+                                            <a href="icons-font-awesome.html" class="dropdown-item">Font
+                                                Awesome 5</a>
+                                            <a href="icons-themify.html" class="dropdown-item">Themify</a>
+                                            <a href="icons-simple-line.html" class="dropdown-item">Simple
+                                                Line</a>
+                                            <a href="icons-weather.html" class="dropdown-item">Weather</a>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown">
+                                        <a class="dropdown-item
+                                                dropdown-toggle arrow-none" href="#" id="topnav-map" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fe-map mr-1"></i> Maps
+                                            <div class="arrow-down"></div>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="topnav-map">
+                                            <a href="maps-google.html" class="dropdown-item">Google
+                                                Maps</a>
+                                            <a href="maps-vector.html" class="dropdown-item">Vector
+                                                Maps</a>
+                                            <a href="maps-mapael.html" class="dropdown-item">Mapael
+                                                Maps</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            
+                        </ul>
+
+                        <!-- end navbar -->
+                    </div>
+
+                    <!-- end .collapsed -->
+                </nav>
+            </div>
+
+            <!-- end container-fluid -->
+        </div>
+
+        <!-- end topnav -->
+        <!-- ============================================================== -->
+        <!-- Start Page Content here -->
+        <!-- ============================================================== -->
+
+        <div class="content-page pb-0">
+            <div class="content">
+                <!-- Start Content -->
+
+                <div class="container-fluid">
+                    {% block content %} {% endblock %}
+                </div>
+
+                <!-- end conteiner-fluid -->
+            </div>
+
+            <!-- end content -->
+        </div>
+
+        <!-- end content-page -->
+        <!-- end Footer -->
+        <!-- ============================================================== -->
+        <!-- End Page content -->
+        <!-- ============================================================== -->
+    </div>
+
+    <!-- END wrapper -->
+    <!-- Vendor js -->
+    <script src="{% static 'js/vendor.min.js' %}"></script>
+    <!-- App js -->
+    <script src="{% static 'js/app.min.js' %}"></script>
+</body>
+
+</html>
